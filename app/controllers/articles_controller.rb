@@ -17,6 +17,7 @@ class ArticlesController < ApplicationController
 
     def create
         @article = Article.new(article_params)
+        @article.user = User.first
         if @article.save
             redirect_to article_path(@article), notice: "Article has been created successfully"
         else
@@ -25,6 +26,7 @@ class ArticlesController < ApplicationController
     end
 
     def update
+        @article.user = User.first
         if @article.update(article_params)
             redirect_to article_path(@article), notice: "Article has been updated successfully"
         else
